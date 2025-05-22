@@ -5,12 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RAFA CALCULATOR</title>
   <style>
-    /* Reset dan Box Sizing */
     * {
       box-sizing: border-box;
     }
-
-    /* Body dan Background Animasi */
     body {
       margin: 0;
       padding: 0;
@@ -25,14 +22,11 @@
       animation: gradientBG 10s ease infinite;
       text-align: center;
     }
-
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    /* Judul Kalkulator */
     .title {
       font-size: 2.5rem;
       font-weight: 700;
@@ -44,14 +38,11 @@
       animation: textColorFlow 6s ease infinite;
       user-select: none;
     }
-
     @keyframes textColorFlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    /* Container Kalkulator */
     .calculator {
       background: rgba(255, 255, 255, 0.9);
       padding: 2rem;
@@ -61,8 +52,6 @@
       max-width: 400px;
       backdrop-filter: blur(10px);
     }
-
-    /* Display Output */
     .display {
       width: 100%;
       height: 60px;
@@ -76,15 +65,11 @@
       box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
       user-select: none;
     }
-
-    /* Grid tombol */
     .buttons {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
-
-    /* Tombol umum */
     button {
       padding: 1rem;
       font-size: 1.25rem;
@@ -96,41 +81,29 @@
       transition: background-color 0.2s ease, transform 0.1s ease;
       user-select: none;
     }
-
     button:hover {
       background: #eeeeee;
       transform: scale(1.05);
     }
-
-    /* Tombol operator */
     .operator {
-      background: linear-gradient(to bottom right, #ffe0e0, #ffc0cb);
+      background: linear-gradient(to bottom right, #a0d8ff, #3aa0ff);
     }
-
     .operator:hover {
-      background: #ffb3c1;
+      background: #2790ff;
     }
-
-    /* Tombol hapus (delete) */
     .delete {
       background: linear-gradient(to bottom right, #cfe3ff, #a7ccff);
     }
-
     .delete:hover {
       background: #91bbff;
     }
-
-    /* Tombol sama dengan (=) */
     .equals {
       background: linear-gradient(to bottom right, #d6fdd6, #b7f0b7);
       grid-column: span 2;
     }
-
     .equals:hover {
       background: #a0e5a0;
     }
-
-    /* Responsif untuk perangkat kecil */
     @media (max-width: 480px) {
       .title {
         font-size: 1.8rem;
@@ -202,6 +175,6 @@
       }
     }
   </script>
-  
+
 </body>
 </html>
