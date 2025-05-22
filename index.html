@@ -2,25 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RAFA CALCULATOR</title>
   <style>
+    /* Reset dan Box Sizing */
     * {
       box-sizing: border-box;
     }
 
+    /* Body dan Background Animasi */
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      animation: gradientBG 10s ease infinite;
-      background: linear-gradient(270deg, #f6d365, #fda085, #a18cd1, #fbc2eb);
-      background-size: 800% 800%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      background: linear-gradient(270deg, #f6d365, #fda085, #a18cd1, #fbc2eb);
+      background-size: 800% 800%;
+      animation: gradientBG 10s ease infinite;
       text-align: center;
     }
 
@@ -30,15 +32,17 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Judul Kalkulator */
     .title {
       font-size: 2.5rem;
-      font-weight: bold;
+      font-weight: 700;
       margin-bottom: 1.5rem;
       background: linear-gradient(90deg, #f6d365, #fbc2eb, #a18cd1, #89f7fe, #ffd3a5);
       background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: textColorFlow 6s ease infinite;
+      user-select: none;
     }
 
     @keyframes textColorFlow {
@@ -47,8 +51,9 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Container Kalkulator */
     .calculator {
-      background: #ffffffdd;
+      background: rgba(255, 255, 255, 0.9);
       padding: 2rem;
       border-radius: 1.5rem;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
@@ -57,25 +62,29 @@
       backdrop-filter: blur(10px);
     }
 
+    /* Display Output */
     .display {
       width: 100%;
       height: 60px;
       font-size: 2rem;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       text-align: right;
       border: none;
       border-radius: 0.75rem;
       margin-bottom: 1.5rem;
       background-color: #f3f3f3;
       box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+      user-select: none;
     }
 
+    /* Grid tombol */
     .buttons {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
 
+    /* Tombol umum */
     button {
       padding: 1rem;
       font-size: 1.25rem;
@@ -83,8 +92,9 @@
       border-radius: 1rem;
       background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-      transition: transform 0.1s ease, background-color 0.2s;
       cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      user-select: none;
     }
 
     button:hover {
@@ -92,6 +102,7 @@
       transform: scale(1.05);
     }
 
+    /* Tombol operator */
     .operator {
       background: linear-gradient(to bottom right, #ffe0e0, #ffc0cb);
     }
@@ -100,6 +111,16 @@
       background: #ffb3c1;
     }
 
+    /* Tombol hapus (delete) */
+    .delete {
+      background: linear-gradient(to bottom right, #cfe3ff, #a7ccff);
+    }
+
+    .delete:hover {
+      background: #91bbff;
+    }
+
+    /* Tombol sama dengan (=) */
     .equals {
       background: linear-gradient(to bottom right, #d6fdd6, #b7f0b7);
       grid-column: span 2;
@@ -109,27 +130,18 @@
       background: #a0e5a0;
     }
 
-    .delete {
-      background: linear-gradient(to bottom right, #cfe3ff, #a7ccff);
-    }
-
-    .delete:hover {
-      background: #91bbff;
-    }
-
+    /* Responsif untuk perangkat kecil */
     @media (max-width: 480px) {
       .title {
         font-size: 1.8rem;
       }
-
       .calculator {
         padding: 1.25rem;
       }
-
       .display {
         font-size: 1.5rem;
+        height: 50px;
       }
-
       button {
         padding: 0.75rem;
         font-size: 1rem;
@@ -138,36 +150,36 @@
   </style>
 </head>
 <body>
+
   <div class="title">RAFA CALCULATOR</div>
 
   <div class="calculator">
-    <input type="text" class="display" id="display" readonly>
-    <div class="buttons">
-      <!-- Tombol Clear (C) sudah dihapus -->
+    <input type="text" class="display" id="display" readonly />
 
-      <button onclick="deleteLast()" class="delete">⌫</button>
+    <div class="buttons">
+      <button onclick="deleteLast()" class="delete" aria-label="Delete last character">⌫</button>
       <button onclick="appendValue('(')">(</button>
       <button onclick="appendValue(')')">)</button>
+      <button onclick="appendValue('/')" class="operator">÷</button>
 
       <button onclick="appendValue('7')">7</button>
       <button onclick="appendValue('8')">8</button>
       <button onclick="appendValue('9')">9</button>
-      <button onclick="appendValue('/')" class="operator">÷</button>
+      <button onclick="appendValue('*')" class="operator">×</button>
 
       <button onclick="appendValue('4')">4</button>
       <button onclick="appendValue('5')">5</button>
       <button onclick="appendValue('6')">6</button>
-      <button onclick="appendValue('*')" class="operator">×</button>
+      <button onclick="appendValue('-')" class="operator">−</button>
 
       <button onclick="appendValue('1')">1</button>
       <button onclick="appendValue('2')">2</button>
       <button onclick="appendValue('3')">3</button>
-      <button onclick="appendValue('-')" class="operator">−</button>
+      <button onclick="appendValue('+')" class="operator">+</button>
 
       <button onclick="appendValue('0')">0</button>
       <button onclick="appendValue('.')">.</button>
-      <button onclick="calculate()" class="equals">=</button>
-      <button onclick="appendValue('+')" class="operator">+</button>
+      <button onclick="calculate()" class="equals" aria-label="Calculate result">=</button>
     </div>
   </div>
 
@@ -177,8 +189,6 @@
     function appendValue(value) {
       display.value += value;
     }
-
-    // Fungsi clearDisplay sudah tidak dipakai karena tombol C dihapus
 
     function deleteLast() {
       display.value = display.value.slice(0, -1);
@@ -192,5 +202,6 @@
       }
     }
   </script>
+  
 </body>
 </html>
