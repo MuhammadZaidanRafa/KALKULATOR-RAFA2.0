@@ -1,87 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto+Mono&display=swap" rel="stylesheet" />
-		<script src="https://cdn.tailwindcss.com"></script>
-		<title>P2-SPK-RPL (RAFA | X-RPL)</title>
-		<style>
-			body {
-				font-family: 'Noto Sans', sans-serif;
-			}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RAFA CALCULATOR</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-			#calculator {
-				font-family: 'Roboto Mono', monospace;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="p-8">
-			<div class="mb-10 text-center">
-				<h1 class="text-4xl text-center font-extrabold">Aplikasi Kalkulator Berbasis Website</h1>
-				<p class="text-lg font-medium mt-2">MUHAMMAD ZAIDAN RAFA - X-RPL1</p>
-			</div>
-			<div class="mx-auto bg-slate-400 w-full xl:w-2/5 h-auto rounded-2xl shadow-2xl drop-shadow-2xl p-4" id="calculator">
-				<div class="monitor flex items-center justify-end bg-gray-100 w-full h-20 rounded-2xl p-2 mb-6">
-					<h1 class="text-4xl font-bold" id="valueDisplay">0</h1>
-				</div>
-				<div class="grid grid-cols-4 gap-x-3 gap-y-6 text-2xl font-semibold">
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('7')">7</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('8')">8</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('9')">9</button>
-					<button class="bg-sky-400 hover:bg-sky-600 text-gray-100 duration-300 px-6 py-4 rounded-full" onclick="appendToDisplay('+')">+</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('4')">4</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('5')">5</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('6')">6</button>
-					<button class="bg-sky-400 hover:bg-sky-600 text-gray-100 duration-300 px-6 py-4 rounded-full" onclick="appendToDisplay('-')">-</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('1')">1</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('2')">2</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('3')">3</button>
-					<button class="bg-sky-400 hover:bg-sky-600 text-gray-100 duration-300 px-6 py-4 rounded-full" onclick="appendToDisplay('*')">x</button>
-					<button class="col-span-2 bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('0')">0</button>
-					<button class="bg-gray-200 hover:bg-orange-200 hover:ring-2 hover:ring-orange-500 duration-300 px-6 py-4 rounded-2xl" onclick="appendToDisplay('.')">.</button>
-					<button class="bg-sky-400 hover:bg-sky-600 text-gray-100 duration-300 px-6 py-4 rounded-full" onclick="appendToDisplay('/')">:</button>
-					<button class="col-span-1 bg-orange-400 text-gray-100 hover:bg-orange-500 duration-300 px-6 py-4 rounded-full" onclick="clearDisplay()">C</button>
-					<button class="col-span-3 bg-green-500 text-gray-100 hover:bg-green-600 duration-300 px-6 py-4 rounded-full" onclick="calculateResult()">=</button>
-				</div>
-			</div>
-		</div>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      animation: gradientBG 10s ease infinite;
+      background: linear-gradient(270deg, #f6d365, #fda085, #a18cd1, #fbc2eb);
+      background-size: 800% 800%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
 
-		<!-- Calculation JS Function -->
-		<script>
-			// JavaScript code to handle calculator logic
-			let displayValue = '0';
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-			function updateDisplay() {
-				document.getElementById('valueDisplay').innerText = displayValue;
-			}
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, #f6d365, #fbc2eb, #a18cd1, #89f7fe, #ffd3a5);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textColorFlow 6s ease infinite;
+    }
 
-			function appendToDisplay(value) {
-				if (displayValue === '0') {
-					displayValue = value;
-				} else {
-					displayValue += value;
-				}
-				updateDisplay();
-			}
+    @keyframes textColorFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-			function calculateResult() {
-				try {
-					displayValue = eval(displayValue).toString();
-					updateDisplay();
-				} catch (error) {
-					displayValue = 'Error';
-					updateDisplay();
-				}
-			}
+    .calculator {
+      background: #ffffffdd;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      width: 90%;
+      max-width: 400px;
+      backdrop-filter: blur(10px);
+    }
 
-			function clearDisplay() {
-				displayValue = '0';
-				updateDisplay();
-			}
-		</script>
-	</body>
+    .display {
+      width: 100%;
+      height: 60px;
+      font-size: 2rem;
+      padding: 0.5rem;
+      text-align: right;
+      border: none;
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      background-color: #f3f3f3;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    button {
+      padding: 1rem;
+      font-size: 1.25rem;
+      border: none;
+      border-radius: 1rem;
+      background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.1s ease, background-color 0.2s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #eeeeee;
+      transform: scale(1.05);
+    }
+
+    .operator {
+      background: linear-gradient(to bottom right, #ffe0e0, #ffc0cb);
+    }
+
+    .operator:hover {
+      background: #ffb3c1;
+    }
+
+    .equals {
+      background: linear-gradient(to bottom right, #d6fdd6, #b7f0b7);
+      grid-column: span 2;
+    }
+
+    .equals:hover {
+      background: #a0e5a0;
+    }
+
+    .delete {
+      background: linear-gradient(to bottom right, #cfe3ff, #a7ccff);
+    }
+
+    .delete:hover {
+      background: #91bbff;
+    }
+
+    @media (max-width: 480px) {
+      .title {
+        font-size: 1.8rem;
+      }
+
+      .calculator {
+        padding: 1.25rem;
+      }
+
+      .display {
+        font-size: 1.5rem;
+      }
+
+      button {
+        padding: 0.75rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="title">RAFA CALCULATOR</div>
+
+  <div class="calculator">
+    <input type="text" class="display" id="display" readonly>
+    <div class="buttons">
+      <!-- Tombol Clear (C) sudah dihapus -->
+
+      <button onclick="deleteLast()" class="delete">⌫</button>
+      <button onclick="appendValue('(')">(</button>
+      <button onclick="appendValue(')')">)</button>
+
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button onclick="appendValue('/')" class="operator">÷</button>
+
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button onclick="appendValue('*')" class="operator">×</button>
+
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button onclick="appendValue('-')" class="operator">−</button>
+
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('.')">.</button>
+      <button onclick="calculate()" class="equals">=</button>
+      <button onclick="appendValue('+')" class="operator">+</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function appendValue(value) {
+      display.value += value;
+    }
+
+    // Fungsi clearDisplay sudah tidak dipakai karena tombol C dihapus
+
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Error';
+      }
+    }
+  </script>
+</body>
 </html>
